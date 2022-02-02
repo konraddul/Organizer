@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<login>
+  <ID></ID>
+  <Login></Login>
+  <Password></Password>
+  <Name></Name>
+  <Surname></Surname>
+  <Email></Email>
+  <PhoneNumber></PhoneNumber>
+</login>

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<connection>
+  <sqlServer></sqlServer>
+  <sqlDataBase></sqlDataBase>
+  <login></login>
+  <password></password>
+</connection>

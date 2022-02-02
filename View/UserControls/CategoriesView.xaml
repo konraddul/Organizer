@@ -1,0 +1,132 @@
+﻿<UserControl x:Class="Organizer.View.UserControls.CategoriesView"
+             x:Name="CategoriesUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Organizer.View.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black"/>
+                <GradientStop Color="White" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="1" 
+              Margin="0,8,0,2" 
+              Height="20" 
+              VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="6*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="ID" 
+                    Content="ID" 
+                    Grid.Column="0"
+                    Command="{Binding Path=SortByID}"
+                    CommandParameter="{Binding ElementName=CategoriesUserControl}"/>
+            <Button x:Name="Name" 
+                    Content="Nazwa" 
+                    Grid.Column="1"
+                    Command="{Binding Path=SortByName}"
+                    CommandParameter="{Binding ElementName=CategoriesUserControl}"/>
+            <Button x:Name="Limit" 
+                    Content="Limit" 
+                    Grid.Column="2"
+                    Command="{Binding Path=SortByLimit}"
+                    CommandParameter="{Binding ElementName=CategoriesUserControl}"/>
+        </Grid>
+
+        <ListBox x:Name="ListBox"
+                 Grid.Column="1"
+                 ItemsSource="{Binding Path=CategoryList}"
+                 HorizontalContentAlignment="Stretch"
+                 Margin="0,30,0,50"
+                 ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="6*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock FontSize="10" 
+                                   Text="{Binding ID}" 
+                                   Grid.Column="0"/>
+                        <TextBlock FontSize="10" 
+                                   Text="{Binding Name}"
+                                   Grid.Column="1"
+                                   Margin="8,0,0,0"/>
+                        <TextBlock FontSize="10" 
+                                   Text="{Binding Limit}" 
+                                   Grid.Column="2" 
+                                   Margin="36,0,0,0"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Grid Grid.Column="1" 
+              Margin="0,8,0,22" 
+              Height="20" 
+              VerticalAlignment="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="6*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="LpSum" 
+                       Grid.Column="0" 
+                       Margin="2,0,2,0"/>
+            <TextBlock x:Name="NameSum" 
+                       Text="Miesięczny limit: " 
+                       Padding="1,0,1,0" 
+                       Margin="2,0,2,0" 
+                       Grid.Column="1" 
+                       Background="LightGray" 
+                       HorizontalAlignment="Right" 
+                       TextAlignment="Right"/>
+            <TextBlock x:Name="LimitSum" 
+                       Text="{Binding Path=MonthLimit}" 
+                       Grid.Column="2" 
+                       Padding="1,0,1,0" 
+                       Margin="2,0,2,0" 
+                       Background="LightGray"/>
+        </Grid>
+
+        <StackPanel x:Name="Buttons" 
+                    Orientation="Vertical" 
+                    HorizontalAlignment="Stretch" 
+                    Grid.Column="2">
+            <Button x:Name="AddButton" 
+                    Content="Dodaj kategorię" 
+                    Margin="10,30,10,2" 
+                    HorizontalAlignment="Stretch"
+                    Command="{Binding Path=AddCategory}"
+                    CommandParameter="{Binding ElementName=CategoriesUserControl}"/>
+            <Button x:Name="DeleteButton" 
+                    Content="Usuń kategorię" 
+                    Margin="10,2,10,2" 
+                    HorizontalAlignment="Stretch"
+                    Command="{Binding Path=DeleteCategory}"
+                    CommandParameter="{Binding ElementName=CategoriesUserControl}"/>
+            <Button x:Name="EditButton" 
+                    Content="Edytuj kategorię" 
+                    Margin="10,2,10,2"
+                    HorizontalAlignment="Stretch"
+                    Command="{Binding Path=EditCategory}"
+                    CommandParameter="{Binding ElementName=CategoriesUserControl}"/>
+        </StackPanel>
+
+    </Grid>
+</UserControl>
